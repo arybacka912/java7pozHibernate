@@ -7,12 +7,19 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sklep?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.password">chihuahua912</property>
         <property name="hibernate.connection.pool_size">200</property>
 
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="sda.pl.Product" />
+        <mapping class="sda.pl.domain.Order" />
+        <mapping class="sda.pl.domain.OrderDetail" />
+        <mapping class="sda.pl.domain.User" />
+        <mapping class="sda.pl.domain.ProductImage" />
+        <mapping class="sda.pl.domain.Cart" />
+        <mapping class="sda.pl.domain.CartDetail" />
+        <mapping class="sda.pl.domain.ProductRating" />
     </session-factory>
 </hibernate-configuration>
