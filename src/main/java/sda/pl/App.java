@@ -1,13 +1,14 @@
 package sda.pl;
 
 
-import org.hibernate.Session;
-        import sda.pl.domain.Order;
+import sda.pl.domain.Order;
         import sda.pl.domain.OrderDetail;
-        import sda.pl.repository.OrderRepository;
+import sda.pl.domain.Product;
+import sda.pl.repository.OrderRepository;
         import sda.pl.repository.ProductRepository;
+import sda.pl.repository.UserRepository;
 
-        import java.math.BigDecimal;
+import java.math.BigDecimal;
         import java.time.LocalDateTime;
         import java.util.Optional;
 
@@ -75,9 +76,11 @@ public class App {
                     .forEach(od -> System.out.println("zamowienia z kefirem" + od.getProduct().getName())));
 
 
+            UserRepository.findAllWithTotalOrderPrice().stream()
+                    .forEach(u-> System.out.println(u.getEmail() + " " + u.getTotalOrderPrice()));
 
 
-
+            ProductRepository.findByNameCriteriaQuery("efir").forEach(p-> System.out.println("criteria: " + p.getName()));
         }
 
 

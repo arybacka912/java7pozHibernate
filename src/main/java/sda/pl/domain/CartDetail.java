@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import sda.pl.Price;
-import sda.pl.Product;
 
 import javax.persistence.*;
 

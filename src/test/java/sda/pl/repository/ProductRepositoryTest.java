@@ -2,11 +2,9 @@ package sda.pl.repository;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sda.pl.Product;
+import sda.pl.domain.Product;
 
 import java.util.Optional;
-
-import static org.junit.Assert.*;
 
 public class ProductRepositoryTest {
 

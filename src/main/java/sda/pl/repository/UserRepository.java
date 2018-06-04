@@ -14,23 +14,23 @@ public class UserRepository {
 
     public Long saveOrUpdate(User user) {
 
-        Session session = null;
-        try {
-            session = HibernateUtil.openSession();
-            session.getTransaction().begin();
-            session.saveOrUpdate(user);
-            session.getTransaction().commit();
-            return user.getId();
-        } catch (Exception e) {
-            if (session != null && session.getTransaction().isActive()) {
-                session.getTransaction().rollback();
-            }
-            e.printStackTrace();
-            return -1L;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
+            Session session = null;
+            try {
+                session = HibernateUtil.openSession();
+                session.getTransaction().begin();
+                session.saveOrUpdate(user);
+                session.getTransaction().commit();
+                return user.getId();
+            } catch (Exception e) {
+                if (session != null && session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+                e.printStackTrace();
+                return -1L;
+            } finally {
+                if (session != null && session.isOpen()) {
+                    session.close();
+                }
         }
     }
 
@@ -71,4 +71,26 @@ public class UserRepository {
             }
         }
     }
+
+    public static List<User> findAllWithTotalOrderPrice(){
+        Session session = null;
+
+        try {
+            session = HibernateUtil.openSession();
+            String hql = "SELECT new sda.pl.domain.User(u.id, u.email, SUM(o.totalPrice.priceGross)) " +
+                    "FROM User u " +
+                    "LEFT JOIN u.orderSet o " +
+                    "GROUP BY u.id ";
+            Query query = session.createQuery(hql);
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
 }

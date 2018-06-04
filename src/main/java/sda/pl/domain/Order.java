@@ -48,9 +48,10 @@ public class Order implements Serializable {
     }
 
     public void calculateTotalPrice(){
-        getTotalPrice().setPriceGross(BigDecimal.ZERO);
-        getTotalPrice().setPriceNet(BigDecimal.ZERO);
-        getTotalPrice().setPriceSymbol("PLN");
+        totalPrice = new Price();
+        totalPrice.setPriceGross(BigDecimal.ZERO);
+        totalPrice.setPriceNet(BigDecimal.ZERO);
+        totalPrice.setPriceSymbol("PLN");
 
         getOrderDetailSet().forEach(
                 cd ->

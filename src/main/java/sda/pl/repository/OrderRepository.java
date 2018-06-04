@@ -2,20 +2,18 @@ package sda.pl.repository;
 
 import org.hibernate.Session;
 import sda.pl.HibernateUtil;
-import sda.pl.Product;
 import sda.pl.domain.Order;
 
 import javax.persistence.Query;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class OrderRepository {
-    public static boolean saveOrder(Order orger) {
+    public static boolean saveOrder(Order order) {
         Session session = null;
         try {
             session = HibernateUtil.openSession();
-            session.save(orger);
+            session.save(order);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
